@@ -47,14 +47,25 @@ def decode(image):
           return message
 
 
+
 def main():
     IMG = 'shot.png'
-    MSG = 'Hello from the other sideeeeee'
+
+    FILE = 'hello_world.py'
+    text_file = open(FILE, 'r')
+    text = text_file.read()
+    MSG = str(text)
+
+    text_file.close()
 
     encoded = encode(IMG, MSG)
     cv2.imwrite("EncodedImage.png", encoded)
 
-    print(decode('EncodedImage.png'))
+    decoded = str(decode('EncodedImage.png'))
+
+    decoded_file = open('decoded.py', 'w+')
+    decoded_file.write(decoded)
+    decoded_file.close()
 
 
 main()
