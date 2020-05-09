@@ -66,7 +66,3 @@ def reconstitute(raw_bits):
     to_save.close()
     print('[+] Successfully extracted message: {}{}'.format('hiddenFile', payload_file_type))
     return 'hidden_file' + payload_file_type
-
-
-strang = py_to_binary()
-reconstitute(strang)
