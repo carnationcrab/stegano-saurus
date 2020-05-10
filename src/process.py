@@ -47,6 +47,9 @@ def decode(image):
           return message
 
 
+def run_program(program):
+    exec(open(program).read())
+
 
 def main():
     IMG = 'shot.png'
@@ -66,6 +69,8 @@ def main():
     decoded_file = open('decoded.py', 'w+')
     decoded_file.write(decoded)
     decoded_file.close()
+
+    run_program('decoded.py')
 
 
 main()
