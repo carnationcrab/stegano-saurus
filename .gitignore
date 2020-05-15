@@ -1,3 +1,7 @@
+# generated files
+src/EncodedImage.png
+src/decoded.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

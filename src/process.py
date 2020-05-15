@@ -1,32 +1,35 @@
 import cv2
 
+
 # convert the text into unicode
 def convert_message(message):
     for c in message:
-        yield(ord(c))
+        yield ord(c)
 
 
 # convert image into numpy array
-def get_image(image):
-  img = cv2.imread(image)
-  return img
+def convert_image(image):
+    img = cv2.imread(image)
+    return img
+
 
 # uses the greatest common denominator to determine which pixels to grab
+# temporary, will eventually allow user to choose the pattern.
 def gcd(x, y):
-  while(y):
-    x, y = y, x % y
+    while(y):
+        x, y = y, x % y
 
-  return x
+    return x
 
 
-def encode(image, message):
-    img = get_image(image)
+def encode(image, message, pattern):
+    img = convert_image(image)
     msg = convert_message(message)
     pattern = gcd(len(img), len(img[0]))
 
     for i in range(len(img)):
         for j in range(len(img[0])):
-            if (i + 1 * j + 1) % pattern == 0:
+            if i % pattern == 0:
                 try:
                     img[i - 1][j - 1][0] = next(msg)
                 except StopIteration:
@@ -35,16 +38,16 @@ def encode(image, message):
 
 
 def decode(image):
-  img = get_image(image)
-  pattern = gcd(len(img), len(img[0]))
-  message = ''
-  for i in range(len(img)):
-    for j in range(len(img[0])):
-      if (i-1 * j-1) % pattern == 0:
-        if img[i-1][j-1][0] != 0:
-          message = message + chr(img[i-1][j-1][0])
-        else:
-          return message
+    img = get_image(image)
+    pattern = gcd(len(img), len(img[0]))
+    message = ''
+    for i in range(len(img)):
+        for j in range(len(img[0])):
+            if (i-1 * j-1) % pattern == 0:
+                if img[i-1][j-1][0] != 0:
+                    message = message + chr(img[i-1][j-1][0])
+                else:
+                    return message
 
 
 def run_program(program):
@@ -52,7 +55,7 @@ def run_program(program):
 
 
 def main():
-    IMG = 'shot.png'
+    IMG = 'finndog.png'
 
     FILE = 'hello_world.py'
     text_file = open(FILE, 'r')
@@ -73,4 +76,4 @@ def main():
     run_program('decoded.py')
 
 
-main()
+# main()
