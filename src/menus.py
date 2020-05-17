@@ -1,26 +1,42 @@
 from src import process
 
+
 def main():
     choice = int(input('Hello! \n'
                        'This is a simple steganography app. \n'
                        'Please click below and type your choice: \n'
-                       '    1. Encode a python program into an image\n'
-                       '    2. SAFE MODE: Decode a python program from an image\n'
-                       '    3. I am confused. \n'))
+                       '    1. ENCODE a python program into an image\n'
+                       '    2. DECODE a python program from an image\n'
+                       '    3. ...I am confused. \n'))
 
     if choice == 1:
-        pattern = input('What pattern? ')
-        image = input('What image? ')
-        program = input('What program would you like to encode? ')
-        process.encode(image, program, pattern)
+        pattern = int(input('What pattern? '))
+        image = input('What image? Include file extension. ')
+        message = input('What program would you like to encode? Include file extension. ')
+        name = input('What would you like to call your encoded image? No need to add the file extension. ')
+
+        print('message', message)
+        encoded = process.encode(image, message, pattern)
+        process.save_img(encoded, name)
+
     elif choice == 2:
-        image = input('What image would you like to decode? (include the file extension, like this: file.py) ')
-        pattern = input('What pattern was this image encoded with? ')
-        run = input(('Would you like to run this code after decoding it, or simply rebuild the file? \n'
-                     '    1. Yes (Please only do this with images you trust. '
-                     'No precautions are taken to prevent malicious code from running \n'
-                     '    2. No \n'))
-        decoded = process.decode(image)
+        image = input('What image would you like to decode? Include file extension.')
+        pattern = int(input('What pattern was this image encoded with? '))
+        name = input('What should we call the file when done processing? (no need to add the file extension. ')
+        run = int(input(('Would you like to run this code after decoding it, or simply rebuild the file? \n'
+                         '    1. Yes (Please only do this with images you trust. '
+                         'No precautions are taken to prevent malicious code from running. \n'
+                         '    2. No \n')))
+
+        extended_name = name + '.py'
+        if run == 1:
+            decoded = process.decode(image, pattern)
+            process.save_file(decoded, extended_name)
+            process.run_program(extended_name)
+        if run == 2:
+            decoded = process.decode(image, pattern)
+            process.save_file(decoded, extended_name)
+            process.run_program(extended_name)
     elif choice == 3:
         print('Hey, we get it! This can be confusing. \n'
               'STEGANOGRAPHY is the process by which one hides a secret file or message within another file. \n'
@@ -43,7 +59,7 @@ def main():
               'During DECODING, you need to supply the decoder with the correct pattern with which the file was \n '
               'originally encoded. \n')
     else:
-        raise Exception("Enter correct input")
+        raise Exception("Please select an available option.")
 
 
 main()
