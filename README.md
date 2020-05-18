@@ -17,6 +17,8 @@ originally encoded.
 
 ## Running the Project
 
+To run the project, run the ```menus.py``` file.
+
 ### Dependencies
 ```pip3 install opencv-python numpy```
 
