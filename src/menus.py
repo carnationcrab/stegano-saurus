@@ -15,7 +15,6 @@ def main():
         message = input('What program would you like to encode? Include file extension. ')
         name = input('What would you like to call your encoded image? No need to add the file extension. ')
 
-        print('message', message)
         encoded = process.encode(image, message, pattern)
         process.save_img(encoded, name)
 
@@ -35,8 +34,7 @@ def main():
             process.run_program(extended_name)
         if run == 2:
             decoded = process.decode(image, pattern)
-            process.save_file(decoded, extended_name)
-            process.run_program(extended_name)
+
     elif choice == 3:
         print('Hey, we get it! This can be confusing. \n'
               'STEGANOGRAPHY is the process by which one hides a secret file or message within another file. \n'

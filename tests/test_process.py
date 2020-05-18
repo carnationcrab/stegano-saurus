@@ -6,10 +6,10 @@ def test_encode():
     # arrange
     img = 'testoriginal.png'
     FILE = 'testhello_world.py'
-    actual = str(process.encode(img, FILE, 5))
     expected = str(cv2.imread('testencoded.png'))
-    print('ACTUAL = ', actual)
-    print('EXPECTED = ', expected)
+
+    # act
+    actual = str(process.encode(img, FILE, 5))
 
     # assert
     assert actual == expected
@@ -22,10 +22,8 @@ def test_decode():
     text = text_file.read()
     expected = str(text)
 
+    # act
     actual = str(process.decode(img, 5))
-
-    print('ACTUAL|', actual)
-    print('EXPECTED|', expected)
 
     # assert
     assert actual == expected

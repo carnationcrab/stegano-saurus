@@ -37,8 +37,8 @@ def decode(image, pattern):
     for width in range(len(img)):
         for height in range(len(img[0])):
             if (width - 1 * height - 1) % pattern == 0:
-                if img[width - 1][width - 1][0] != 0:
-                    message = message + chr(img[width - 1][width - 1][0])
+                if img[width - 1][height - 1][0] != 0:
+                    message = message + chr(img[width - 1][height - 1][0])
                 else:
                     return str(message)
 
