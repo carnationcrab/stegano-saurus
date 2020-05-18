@@ -20,6 +20,8 @@ originally encoded.
 ### Dependencies
 ```pip3 install opencv-python numpy```
 
+To encode and decode files, files need to be within the src folder of the project.
+
 ## Running the tests
 
 ``` python -m pytest```
