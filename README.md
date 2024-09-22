@@ -1,5 +1,5 @@
 # Stegano-saurus: A Steganography Project
-### Sam Martorana — Fundamentals of Software Dev. Python — SEIS 603-01
+### Fundamentals of Software Dev. Python — SEIS 603-01
 
 A simple python app that allows a user to encode a secret python program in a photo as well as decode and run a secret python program that has already been encoded.
 
